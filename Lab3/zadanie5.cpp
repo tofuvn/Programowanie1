@@ -1,4 +1,8 @@
 #include <iostream>
+#include <cstdlib>
+#include <cstring>
+
+
 
 using namespace std;
 
@@ -6,6 +10,8 @@ int main(){
 	char tab_znakowa[] = "       To jest dlugi sms.    Chcialbym go skrocic! Powiesz mi jak    ?      ";
 
 	int length = strlen(tab_znakowa);
+	
+	cout << tab_znakowa << endl;
 
 	cout << "Dlugosc przed zmieniem: " << length << endl;
 
