@@ -12,7 +12,7 @@ int main(){
 
 	for (int i = 0; i <= length - 1; i++) {
 		if (tab_znakowa[i] == ' ') {
-			cout << "Postion first space: " << i << endl;
+			cout << "Pozycja pierwsza spacja: " << i << endl;
 			int j = i + 1;
 			int count = 1;
 			while (tab_znakowa[j] == ' ' && j <= length - 1) {
