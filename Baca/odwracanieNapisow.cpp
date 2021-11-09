@@ -22,7 +22,7 @@ int main() {
 			tab[j] =  tab[len-1-j];
 			tab[len-1-j] = temp;
 		}
-		cout << tab;
+		cout << tab << endl;
 	}
 }
 

@@ -10,19 +10,17 @@ int main() {
 	
 	cin >> n >> m;
 	
-	bool flag = false;
+	bool isExist = false;
 	
 	for (int i = 0; i < m; i++) {
 		cin >> a;
 		if (n % a == 0) {
-			cout << "Tak";
-		} else continue;
+			isExist = true;
+			break;
+		}
 	}
 	
-	if (!flag) {
-		cout << "Nie";
-	}
-	
-	return 0;
+	if (isExist) cout << "TAK"; else cout << "NIE";
+
 }
 
