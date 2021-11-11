@@ -1,171 +1,166 @@
 // Van The Ho
 
 #include <iostream>
-#include <limits>
-#include <cmath>
-
 
 using namespace std;
 
-long long sum_of_table(int **table, int M) {
+int** initialize_board(int **board, int M) {
+	board = new int*[M];
+	
+	for (int i = 0; i < M; i++) {
+		board[i] = new int[M];
+	}
+	return board;	
+}
+
+long long sum_of_board(int **board, int M) {
 	long long sum = 0;
 	
 	for (int i = 0; i < M; i++) {
 		for (int j = 0; j < M; j++ ){
-			sum += table[i][j];
+			sum += board[i][j];
 		}
 	}
 	return sum;
 };
 
-void N(int **table) {
+void N(int **board) {
 	int x, y, w;
 	cin >> x >> y >> w;
-	table[x][y] = w;
+	board[x][y] = w;
 }
 
-void move_to_left(int *table, int M, int from, int dist) {
-	for (int i = from; i < M - dist; i++) {
-		table[i] = table[i + dist];
+int** C(int **board, int M) {
+	board = initialize_board(board, M);
+	
+	for (int i = 0; i < M; i++) {
+		for (int j = 0; j < M; j++) {
+			cin >> board[i][j];
+		}
+	}
+	return board;
+}
+
+void move_to_left(int *board, int M, int from, int distance) {
+	// move array to left with distance 
+	for (int i = from; i < M - distance; i++) {
+		board[i] = board[i + distance];
 	}
 	
-	for (int i = M - dist; i < M; i++) {
-		table[i] = 0;
+	// fill last (distance) elements with 0s
+	for (int i = M - distance; i < M; i++) {
+		board[i] = 0;
 	}
 }
 
-void L(int **table, int M) {
+void L(int **board, int M) {
+	// Perform on each row
 	for (int i = 0; i < M; i++) {
 		int j = 0;
 		while (j < M) {
-			if (table[i][j] == 0) {
-				/*int count = 1;
-				while (table[i][j] == table[i][j+1] and j < M - 1) {
-					count++;
-					j++;
-				}
-				move_to_left(table[i], M, j, count);
-				if (j == M - 1) break;
-				j = 0;	*/			
+			
+			if (board[i][j] == 0) {
+				// if we encounter a 0 element , we'll count how many 0s after it, 
+				// if all 0s , we done with this row and go to next row, 
+				// otherwise we move this row to left with distance equals how many 0s we encountered 			
+				// we return to the first element and check again
 				
 				int k = j + 1;
-				while (k <= M - 1 && table[i][k] == 0) {
+				while (k <= M - 1 && board[i][k] == 0) {
 					k++;
 				}
 				
-				if (k == (M )) break;
+				if (k == M) break;
 			
-				move_to_left(table[i], M, j, 1);
+				move_to_left(board[i], M, j, 1);
 				j = 0;
 								
-			} else if (table[i][j] == table[i][j+1]) {
-					table[i][j] *= 2;
-					move_to_left(table[i], M, j+1, 1);
+			} else if (board[i][j] == board[i][j+1]) {
+					// if we encounter a element and the elemenet right after is equals it , 
+					// we double first elemment and move this row to left with distance 1 and 
+					// we return to the first element and check again
+					board[i][j] *= 2;
+					move_to_left(board[i], M, j+1, 1);
 					j = 0;
 			} else {
+				// if either 0 or 2 element equals , check next element
 				j++;
 			}
 		}
 	}
 }
 
-void reverseTable(int **table, int M) {
+// The ideal of this function is so simple
+// When the people swipe RIGHT , it actually do the same as peole swipe LEFT, just change the direction from LEFT to RIGHT
+// so what we only need to do is REVERSE the board from LEFT to RIGHT
+
+
+void reverseboard(int **board, int M) {
 	int temp = 0;
 	for (int i = 0; i < M; i++) {
 		for (int j = 0; j < (M / 2); j++) {
-			temp = table[i][j];
-			table[i][j] = table[i][M - 1 - j];
-			table[i][M -1 -j] = temp;
+			temp = board[i][j];
+			board[i][j] = board[i][M - 1 - j];
+			board[i][M -1 -j] = temp;
 		}
 	}
 }
 
+// swipe DOWN is the same as first ROTATE the board 90 degrees clockwise and do the swipe LEFT ,
+// and after do ROTATE the board 90 degrees counterclock wise ( or 3 times ROTATE 90 clockwise)
+// swipe UP analogous
+void rotationMatrix90ClockWise(int **board, int M) {
+	for (int i = 0; i < M / 2; i++) {
+        for (int j = i; j < M - i - 1; j++) {
+ 
+            int temp = board[i][j];
+            board[i][j] = board[M - 1 - j][i];
+            board[M - 1 - j][i] = board[M - 1 - i][M - 1 - j];
+            board[M - 1 - i][M - 1 - j] = board[j][M - 1 - i];
+            board[j][M - 1 - i] = temp;
+        }
+    }
+}
 
 
-void W(int **table, int M) {
+
+void W(int **board, int M) {
 	for (int i = 0; i < M; i++) {
 		for (int j = 0; j < M; j++) {
-			cout << table[i][j] << " ";
+			cout << board[i][j] << " ";
 		}
 		cout << endl;
 	}
 }
 
-void P(int **table, int M) {
-	reverseTable(table, M);
-	L(table, M);
-	reverseTable(table, M);
+void P(int **board, int M) {
+	reverseboard(board, M);
+	L(board, M);
+	reverseboard(board, M);
 } 
 
-void C(int **table, int M) {
-	for (int i = 0; i < M; i++) {
-		for (int j = 0; j < M; j++) {
-			cin >> table[i][j];
-		}
-	}
-}
 
-void rotationMatrix90ClockWise(int **a, int N) {
-	for (int i = 0; i < N / 2; i++) {
-        for (int j = i; j < N - i - 1; j++) {
- 
-            int temp = a[i][j];
-            a[i][j] = a[N - 1 - j][i];
-            a[N - 1 - j][i] = a[N - 1 - i][N - 1 - j];
-            a[N - 1 - i][N - 1 - j] = a[j][N - 1 - i];
-            a[j][N - 1 - i] = temp;
-        }
-    }
-}
-
-void rotationMatrix90CounterClockWise(int **mat,  int N) {
-  
-    for (int x = 0; x < N / 2; x++) {
-       
-        for (int y = x; y < N - x - 1; y++) {
-         
-            int temp = mat[x][y];
- 
-       
-            mat[x][y] = mat[y][N - 1 - x];
- 
-            mat[y][N - 1 - x]
-                = mat[N - 1 - x][N - 1 - y];
- 
-            mat[N - 1 - x][N - 1 - y]
-                = mat[N - 1 - y][x];
- 
-            mat[N - 1 - y][x] = temp;
-        }
-    }
-}
-
-void D(int **table, int M) {
-	rotationMatrix90ClockWise(table, M);
-	L(table, M);
-	rotationMatrix90ClockWise(table, M);
-	rotationMatrix90ClockWise(table, M);
-	rotationMatrix90ClockWise(table, M);
-	//rotationMatrix90CounterClockWise(table, M);
+void D(int **board, int M) {
+	rotationMatrix90ClockWise(board, M);
+	L(board, M);
+	rotationMatrix90ClockWise(board, M);
+	rotationMatrix90ClockWise(board, M);
+	rotationMatrix90ClockWise(board, M);
 }
 
 
-void G(int **table, int M) {
-	//rotationMatrix90CounterClockWise(table, M);
-	rotationMatrix90ClockWise(table, M);
-	rotationMatrix90ClockWise(table, M);
-	rotationMatrix90ClockWise(table, M);
-	L(table,M);
-	rotationMatrix90ClockWise(table, M);
+void G(int **board, int M) {
+	rotationMatrix90ClockWise(board, M);
+	rotationMatrix90ClockWise(board, M);
+	rotationMatrix90ClockWise(board, M);
+	L(board,M);
+	rotationMatrix90ClockWise(board, M);
 }
 
-void S(int **table, int M) {
-	cout << sum_of_table(table, M) << endl;
+void S(int **board, int M) {
+	cout << sum_of_board(board, M) << endl;
 }
 
-void K(int **table, int M) {
-	cout << sum_of_table(table, M) << endl;
-}
 
 int main() {
 	
@@ -173,11 +168,9 @@ int main() {
 	
 	cin >> M;
 	
-	int **table = new int*[M];
+	int **board = NULL;
 	
-	for (int i = 0; i < M; i++) {
-		table[i] = new int[M];
-	}
+	board  = initialize_board(board, M);
 	
 	char key;
 	
@@ -188,37 +181,33 @@ int main() {
 		cin >> key;	
 		switch(key) {
 		case 'N': 
-			N(table);
+			N(board);
 			break;
 		case 'L':
-			L(table, M);
+			L(board, M);
 			break;
 		case 'P': 
-			P(table, M);
+			P(board, M);
 			break;
 		case 'G':
-			G(table, M);
+			G(board, M);
 			break;
 		case 'D': 
-			D(table, M);
+			D(board, M);
 			break;
 		case 'S':
-			S(table, M);
+			S(board, M);
 			break;
 		case 'W': 
-			W(table, M);
+			W(board, M);
 			break;
 		case 'C':
 			cin >> M;
-			table = new int*[M];
-			for (int i = 0; i < M; i++) {
-				table[i] = new int[M];
-			}
-			C(table, M);
+			board = C(board, M);
 			break;
 		case 'K':
-			K(table, M);
-			delete[] table;
+			S(board, M);
+			delete[] board;
 			quit = true;
 			break;
 
