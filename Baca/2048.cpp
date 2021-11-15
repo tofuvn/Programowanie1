@@ -104,14 +104,15 @@ void reverseboard(int **board, int M) {
 	}
 }
 
-// swipe DOWM is the same as first ROTATE the board 90 degrees clockwise and do the swipe LEFT ,
+// swipe DOWN is the same as first ROTATE the board 90 degrees clockwise and do the swipe LEFT ,
 // and after do ROTATE the board 90 degrees counterclock wise ( or 3 times ROTATE 90 clockwise)
 // swipe UP analogous
-void rotationboardrix90ClockWise(int **board, int M) {
+void rotationMatrix90ClockWise(int **board, int M) {
+	int temp;
 	for (int i = 0; i < M / 2; i++) {
         for (int j = i; j < M - i - 1; j++) {
  
-            int temp = board[i][j];
+			temp = board[i][j];
             board[i][j] = board[M - 1 - j][i];
             board[M - 1 - j][i] = board[M - 1 - i][M - 1 - j];
             board[M - 1 - i][M - 1 - j] = board[j][M - 1 - i];
@@ -120,23 +121,16 @@ void rotationboardrix90ClockWise(int **board, int M) {
     }
 }
 
-void rotationboardrix90CounterClockWise(int **board,  int M) {
-
+void rotationMatrix90CounterClockWise(int **board,  int M) {
+	
+	int temp = 0;
     for (int x = 0; x < M / 2; x++) {
-
         for (int y = x; y < M - x - 1; y++) {
 
-            int temp = board[x][y];
-
-
+            temp = board[x][y];
             board[x][y] = board[y][M - 1 - x];
-
-            board[y][M - 1 - x]
-                = board[M - 1 - x][M - 1 - y];
-
-            board[M - 1 - x][M - 1 - y]
-                = board[M - 1 - y][x];
-
+            board[y][M - 1 - x] = board[M - 1 - x][M - 1 - y];
+            board[M - 1 - x][M - 1 - y] = board[M - 1 - y][x];
             board[M - 1 - y][x] = temp;
         }
     }
@@ -162,17 +156,17 @@ void P(int **board, int M) {
 
 
 void D(int **board, int M) {
-	rotationboardrix90ClockWise(board, M);
+	rotationMatrix90ClockWise(board, M);
 	L(board, M);
-	rotationboardrix90CounterClockWise(board, M);
+	rotationMatrix90CounterClockWise(board, M);
 }
 
 
 
 void G(int **board, int M) {
-	rotationboardrix90CounterClockWise(board, M);
+	rotationMatrix90CounterClockWise(board, M);
 	L(board,M);
-	rotationboardrix90ClockWise(board, M);
+	rotationMatrix90ClockWise(board, M);
 }
 
 void S(int **board, int M) {
