@@ -63,7 +63,7 @@ void L(int **board, int M) {
 				// if we encounter a 0 element , we'll count how many 0s after it, 
 				// if all 0s , we done with this row and go to next row, 
 				// otherwise we move this row to left with distance equals how many 0s we encountered 			
-				// we return to the first element and check again
+				// we return to the element right before and check again
 				
 				int k = j + 1;
 				while (k <= M - 1 && board[i][k] == 0) {
@@ -73,15 +73,15 @@ void L(int **board, int M) {
 				if (k == M) break;
 			
 				move_to_left(board[i], M, j, 1);
-				j = 0;
+				j = max(0, j - 1);
 								
 			} else if (board[i][j] == board[i][j+1]) {
 					// if we encounter a element and the elemenet right after is equals it , 
 					// we double first elemment and move this row to left with distance 1 and 
-					// we return to the first element and check again
+					// we return to the element right before and check again
 					board[i][j] *= 2;
 					move_to_left(board[i], M, j+1, 1);
-					j = 0;
+					j = max(0, j - 1);
 			} else {
 				// if either 0 or 2 element equals , check next element
 				j++;
@@ -93,8 +93,6 @@ void L(int **board, int M) {
 // The ideal of this function is so simple
 // When the people swipe RIGHT , it actually do the same as peole swipe LEFT, just change the direction from LEFT to RIGHT
 // so what we only need to do is REVERSE the board from LEFT to RIGHT
-
-
 void reverseboard(int **board, int M) {
 	int temp = 0;
 	for (int i = 0; i < M; i++) {
@@ -106,10 +104,10 @@ void reverseboard(int **board, int M) {
 	}
 }
 
-// swipe DOWN is the same as first ROTATE the board 90 degrees clockwise and do the swipe LEFT ,
+// swipe DOWM is the same as first ROTATE the board 90 degrees clockwise and do the swipe LEFT ,
 // and after do ROTATE the board 90 degrees counterclock wise ( or 3 times ROTATE 90 clockwise)
 // swipe UP analogous
-void rotationMatrix90ClockWise(int **board, int M) {
+void rotationboardrix90ClockWise(int **board, int M) {
 	for (int i = 0; i < M / 2; i++) {
         for (int j = i; j < M - i - 1; j++) {
  
@@ -121,6 +119,29 @@ void rotationMatrix90ClockWise(int **board, int M) {
         }
     }
 }
+
+void rotationboardrix90CounterClockWise(int **board,  int M) {
+
+    for (int x = 0; x < M / 2; x++) {
+
+        for (int y = x; y < M - x - 1; y++) {
+
+            int temp = board[x][y];
+
+
+            board[x][y] = board[y][M - 1 - x];
+
+            board[y][M - 1 - x]
+                = board[M - 1 - x][M - 1 - y];
+
+            board[M - 1 - x][M - 1 - y]
+                = board[M - 1 - y][x];
+
+            board[M - 1 - y][x] = temp;
+        }
+    }
+}
+
 
 
 
@@ -141,20 +162,17 @@ void P(int **board, int M) {
 
 
 void D(int **board, int M) {
-	rotationMatrix90ClockWise(board, M);
+	rotationboardrix90ClockWise(board, M);
 	L(board, M);
-	rotationMatrix90ClockWise(board, M);
-	rotationMatrix90ClockWise(board, M);
-	rotationMatrix90ClockWise(board, M);
+	rotationboardrix90CounterClockWise(board, M);
 }
 
 
+
 void G(int **board, int M) {
-	rotationMatrix90ClockWise(board, M);
-	rotationMatrix90ClockWise(board, M);
-	rotationMatrix90ClockWise(board, M);
+	rotationboardrix90CounterClockWise(board, M);
 	L(board,M);
-	rotationMatrix90ClockWise(board, M);
+	rotationboardrix90ClockWise(board, M);
 }
 
 void S(int **board, int M) {
