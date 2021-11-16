@@ -66,13 +66,15 @@ void L(int **board, int M) {
 				// we return to the element right before and check again
 				
 				int k = j + 1;
+				int dist = 1;
 				while (k <= M - 1 && board[i][k] == 0) {
 					k++;
+					dist++;
 				}
 				
 				if (k == M) break;
 			
-				move_to_left(board[i], M, j, 1);
+				move_to_left(board[i], M, j, dist);
 				j = max(0, j - 1);
 								
 			} else if (board[i][j] == board[i][j+1]) {
@@ -149,9 +151,62 @@ void W(int **board, int M) {
 }
 
 void P(int **board, int M) {
-	reverseboard(board, M);
-	L(board, M);
-	reverseboard(board, M);
+	for (int t = 0; t < M; t++) {
+		int *g=board[t];
+                    for(int k=M-1;k>0;k--)
+                        {
+                            int zero=0;
+                            if (g[k]==0)
+                            {
+								zero++;
+                                for(int i=k-1;i>-1;i--) 
+                                {  
+                                    if(g[i]==0) zero++;
+                                    else break;
+ 
+                                }
+                                if(zero==k+1) break;//wszystko od k w prawo jest zerem wiec git
+                                //
+                                for(int i=k;i > zero- 1;i--)//przesuwamy o ilosc zer w lewo
+                                {
+                                    g[i]=g[i-zero];
+                                }
+                                for (int i = zero - 1 ; i >-1; i--)
+                                {
+                                    g[i]=0;//ostatnie miejsca wypełniamy zerami
+                                }
+                                if(k+2>M-1) k=M; else k=k+2;
+                                
+                            }
+                            
+ 
+ 
+ 
+ 
+                            else if (g[k]==g[k-1])
+                            {// dwa obok siebie jednakowe sumujemy w prawym, lewy dostaje 0
+                                g[k]*=2;
+ 
+                                for(int i=k-1;i>0;i--)//przesuwamy o ilosc zer w prawo//teraz jest jedno zero bo zerujemy k-1
+                                {
+                                    g[i]=g[i-1];
+                                }
+                                
+                                g[0]=0;//ostatnie miejsca wypełniamy zerami
+                               
+                            if(k+2>M-1) k=M; else k=k+2;
+                    
+                            }}
+                    
+                    
+                    
+                
+                    
+	}
+	
+                    
+                    
+                
 } 
 
 
