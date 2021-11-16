@@ -66,13 +66,15 @@ void L(int **board, int M) {
 				// we return to the element right before and check again
 				
 				int k = j + 1;
+				int count = 1;
 				while (k <= M - 1 && board[i][k] == 0) {
 					k++;
+					count++;
 				}
 				
 				if (k == M) break;
 			
-				move_to_left(board[i], M, j, 1);
+				move_to_left(board[i], M, j, count);
 				j = max(0, j - 1);
 								
 			} else if (board[i][j] == board[i][j+1]) {
@@ -144,7 +146,7 @@ void W(int **board, int M) {
 		for (int j = 0; j < M; j++) {
 			cout << board[i][j] << " ";
 		}
-		cout << endl;
+		cout << '\n';
 	}
 }
 
