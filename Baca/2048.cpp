@@ -66,26 +66,16 @@ void L(int **board, int M) {
 				// we return to the element right before and check again
 				
 				int k = j + 1;
-<<<<<<< HEAD
 				int dist = 1;
 				while (k <= M - 1 && board[i][k] == 0) {
 					k++;
 					dist++;
-=======
-				int count = 1;
-				while (k <= M - 1 && board[i][k] == 0) {
-					k++;
-					count++;
->>>>>>> 2b5dc53bbd62b3142359434bbec42a4381931971
+
 				}
 				
 				if (k == M) break;
 			
-<<<<<<< HEAD
 				move_to_left(board[i], M, j, dist);
-=======
-				move_to_left(board[i], M, j, count);
->>>>>>> 2b5dc53bbd62b3142359434bbec42a4381931971
 				j = max(0, j - 1);
 								
 			} else if (board[i][j] == board[i][j+1]) {
