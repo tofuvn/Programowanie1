@@ -3,32 +3,48 @@
 
 using namespace std;
 
-void reallocMemory(int **test) {
+/*void reallocMemory(int **test) {
 	test = (int**) realloc (test ,5 * sizeof(int*));
-	*(test+ 4) = (int*) calloc(2, sizeof(int));
-	*(*(test+ 4) + 1) = 2;
-	//*(test + 10) = 5;
-}
+}*/
 
 int main() {
 	
 	int N  = 4;
+	int M = 3;
 	
 	int **test = (int**) malloc (N * sizeof(int*));
 	
-	reallocMemory(test);
+	//reallocMemory(test);
 	
 	for (int i = 0;i < N; i++) {
-		*(test+i) = (int*) calloc(2,sizeof(int));
+		*(test+i) = (int*) calloc(M,sizeof(int));
 	}
 	
-	reallocMemory(test);
+	//reallocMemory(test);
 
 	
-	for (int i = 0; i < 5; i++) {
-		for (int j = 0; j < 2; j++)
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++)
 		cout << *((*(test + i)) + j)<< " " ; 
 	}
 	
+	
+	N = 5;
+	test = (int**) realloc (test ,N * sizeof(int*));
+	
+	*(test + 4) = (int*) malloc (M  * sizeof(int));
+
+	for (int i = 0;i < N; i++) {
+		*(test+i) = (int*) realloc( *(test+i) ,M * sizeof(int));
+	}
+	
+	
+	
+	
+	for (int i = 0; i < N; i++ ){
+		free(*(test + i));
+	}
+	free(test);
+	cout << "11" << endl;
 	return 0;
 }

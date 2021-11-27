@@ -1,8 +1,10 @@
 // Van The Ho
 
 #include <iostream>
-#include <cstdlib>
 #include <cmath>
+#include <cstdlib>
+#include <stdlib.h>
+
 
 using namespace std;
 
@@ -23,8 +25,6 @@ int main() {
 	int *sizeOfEachRow = (int*) malloc (N * sizeof(int));
 		
 	int **array2D = (int**) malloc (N * sizeof(int*));
-	
-	
 	
 	// number of element in each row
 	int size;
@@ -59,26 +59,21 @@ int main() {
 				S(array2D,sizeOfEachRow, N);
 				break;
 			case 'D':
-			// TODO
-				D(array2D,sizeOfEachRow, N);
+				D(array2D,sizeOfEachRow, N);		
 				break;
 			case 'A':
-			
-			// TODO
 				A(array2D,sizeOfEachRow, N);
 				break;
 			case 'I':
-			// TODO
 				I(array2D,sizeOfEachRow, N);
 				break;
 			case 'E' :
-			// TODO
 				quit = true;
-				/*for (int i = 0; i < N; i++) {
+				for (int i = 0; i < N; i++) {
 					free(*(array2D + i));
 				}
 				free(array2D);
-				free(sizeOfEachRow);*/
+				free(sizeOfEachRow);
 				break;
 		}	
 	}
@@ -87,113 +82,142 @@ int main() {
 }
 
 void P(int **array2D,int  *sizeOfEachRow,int N) {
-	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < *(sizeOfEachRow + i); j++) {
-			cout << *(*(array2D + i) + j) << " ";
-		}
+	if (N > 0) {
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < *(sizeOfEachRow + i); j++) {
+				cout << *(*(array2D + i) + j) << " ";
+			}
+			cout << endl;
+			}
 		cout << endl;
 	}
-	cout << endl;
 }
 
 void R(int **&array2D,int  *&sizeOfEachRow,int &N) {
 	int n;
 	cin >> n;
-	for (int i = n; i < N - 1; i++) {
-		*(array2D + i) = *(array2D + i + 1);
-		*(sizeOfEachRow + i) = *(sizeOfEachRow + i + 1);
+	if (N > 0) {
+		free(*(array2D + n));
+		for (int i = n; i < N - 1; i++) {
+			*(array2D + i) = *(array2D + i + 1);
+			*(sizeOfEachRow + i) = *(sizeOfEachRow + i + 1);
+		}
+		
+		N--;
+		sizeOfEachRow = (int*) realloc (sizeOfEachRow, N * sizeof(int));
 	}
-	N--;
-	array2D = (int**) realloc (array2D, N * sizeof(int*));
-	sizeOfEachRow = (int*) realloc (sizeOfEachRow, N * sizeof(int));
+	
 }
 
 void S(int **array2D,int  *sizeOfEachRow,int N) {
 	int n, m;
 	cin >> n >> m;
 	
-	int maxSize;
-	maxSize = max(*(sizeOfEachRow + n ), *(sizeOfEachRow + m));
+	if (n != m) {
+		int  *tempArray;
 	
-	int  *tempArray;
-	tempArray = (int*) malloc (maxSize * sizeof(int));
+		tempArray = *(array2D + m);
+		*(array2D + m) = *(array2D + n);
+		*(array2D + n) = tempArray;
+		
+		int temp;
+		temp = *(sizeOfEachRow + n);
+		*(sizeOfEachRow + n ) = *(sizeOfEachRow + m);
+		*(sizeOfEachRow + m) = temp;
+	}
 	
-	tempArray = *(array2D + m);
-	*(array2D + m) = *(array2D + n);
-	*(array2D + n) = tempArray;
 	
-	//free(tempArray);
-	
-	int temp;
-	temp = *(sizeOfEachRow + n);
-	*(sizeOfEachRow + n ) = *(sizeOfEachRow + m);
-	*(sizeOfEachRow + m) = temp;
 }
 
 void D(int **array2D,int  *sizeOfEachRow,int N) {
-	int n;
-	cin >> n;
 	
-	int sizeOfIndexRow = *(sizeOfEachRow + n);
-	
-	*(array2D + n) = (int*) realloc (*(array2D + n), (sizeOfIndexRow) * 2 * sizeof(int));
+	if (N > 0) {
+		int n;
+		cin >> n;
+		
+		int sizeOfIndexRow = *(sizeOfEachRow + n);
 
-	
-	for (int i = 0; i < sizeOfIndexRow; i++ ){
-		*(*(array2D + n)+ i + sizeOfIndexRow) = *(*(array2D + n)+ i);
-	}
-	
-	*(sizeOfEachRow + n) = sizeOfIndexRow * 2;
-	
+		
+		*(array2D + n) = (int*) realloc (*(array2D + n), (sizeOfIndexRow) * 2 * sizeof(int));
+
+		
+		for (int i = 0; i < sizeOfIndexRow; i++ ){
+			*(*(array2D + n)+ i + sizeOfIndexRow) = *(*(array2D + n)+ i);
+		}
+		
+		*(sizeOfEachRow + n) = sizeOfIndexRow * 2;
+	}	
 }
 
 void A(int **&array2D,int  *&sizeOfEachRow,int &N) {
-	int n;
-	cin >> n;
-		
-	int sizeOfRow = *(sizeOfEachRow + n);
-
-	N++;
-		
-	array2D = (int**) realloc (array2D, N * sizeof(int*));
-	sizeOfEachRow = (int*) realloc (sizeOfEachRow, N * sizeof(int));
-
-	*(array2D + N - 1) = (int*) calloc (sizeOfRow , sizeof(int));
-	*(sizeOfEachRow + N - 1) = sizeOfRow;
 	
+	if (N > 0) {
+		int n;
+		cin >> n;
+			int sizeOfRow = *(sizeOfEachRow + n);
 
-	for (int i = 0; i < sizeOfRow; i++ ){
-		*(*(array2D + N - 1)+ i) = *(*(array2D + n)+ i);
+		N++;
+			
+		array2D = (int**) realloc (array2D, N * sizeof(int*));
+		sizeOfEachRow = (int*) realloc (sizeOfEachRow, N * sizeof(int));
+
+		*(array2D + N - 1) = (int*) calloc (sizeOfRow , sizeof(int));
+		*(sizeOfEachRow + N - 1) = sizeOfRow;
+		
+
+		for (int i = 0; i < sizeOfRow; i++ ){
+			*(*(array2D + N - 1)+ i) = *(*(array2D + n)+ i);
+		}
 	}
+		
+	
 	
 }
 
 void I(int **&array2D,int  *&sizeOfEachRow,int &N) {
 
-	int n, m, k;
-	cin >> n >> m >> k;
-	
-	int sizeOfRowN = *(sizeOfEachRow + n);
-	int sizeOfRowM = *(sizeOfEachRow + m);
-	
-	
-	*(array2D + m) = (int*) realloc (*(array2D + m), (sizeOfRowM + sizeOfRowN) * sizeof(int));
-	*(sizeOfEachRow + m) = sizeOfRowN  + sizeOfRowM;
-	
-	for (int i = 0; i < sizeOfRowN; i++) {
-		*(*(array2D + m) + k + i + sizeOfRowN) = *(*(array2D + m) + k + i);
-		*(*(array2D + m) + k + i) = *(*(array2D + n) + i);
-	}
-	
-	
-	
-	for (int i = n; i < N - 1; i++) {
-		*(array2D + i) = *(array2D + i + 1);
-		*(sizeOfEachRow + i) = *(sizeOfEachRow + i + 1);
-	}
-	N--;
-	array2D = (int**) realloc (array2D, N * sizeof(int*));
-	sizeOfEachRow = (int*) realloc (sizeOfEachRow, N * sizeof(int));
+	if (N > 0) {
+		int n, m, k;
+		cin >> n >> m >> k;
+		
+		if (n != m) {
+			int sizeOfFirstRow = *(sizeOfEachRow + n);
+			int sizeOfSecondRow = *(sizeOfEachRow + m);
+				
+			*(array2D + m) = (int*) realloc (*(array2D + m), (sizeOfSecondRow + sizeOfFirstRow) * sizeof(int));
+			
+			for (int i = 0; i < (sizeOfSecondRow - k); i++) {
+				*(*(array2D + m) + k + i + sizeOfFirstRow) = *(*(array2D + m) + k + i);
+			}
+			for (int i = 0; i < sizeOfFirstRow; i++) {
+				*(*(array2D + m) + k + i) = *(*(array2D + n) + i);
+			
+			*(sizeOfEachRow + m) = sizeOfFirstRow  + sizeOfSecondRow;
+		}
+			free(*(array2D + n));
+			
+			for (int i = n; i < N - 1; i++) {
+				*(array2D + i) = *(array2D + i + 1);
+				*(sizeOfEachRow + i) = *(sizeOfEachRow + i + 1);
+			}
+			N--;
+			sizeOfEachRow = (int*) realloc (sizeOfEachRow, N * sizeof(int));
+		} else {
+			int sizeOfFirstRow = *(sizeOfEachRow + n);
+			int sizeOfSecondRow = *(sizeOfEachRow + m);
+				
+			*(array2D + m) = (int*) realloc (*(array2D + m), (sizeOfSecondRow + sizeOfFirstRow) * sizeof(int));
+			
+			for (int i = 0; i < (sizeOfSecondRow - k); i++) {
+				*(*(array2D + m) + k + i + sizeOfFirstRow) = *(*(array2D + m) + k + i);
+			}
+			for (int i = 0; i < sizeOfFirstRow; i++) {
+				*(*(array2D + m) + sizeOfFirstRow - i) = *(*(array2D + m) + sizeOfFirstRow - i - 1);
+				*(sizeOfEachRow + m) = sizeOfFirstRow  + sizeOfSecondRow;
+			}
 
-	
+			sizeOfEachRow = (int*) realloc (sizeOfEachRow, N * sizeof(int));
+		}
+		
+	}
 }
