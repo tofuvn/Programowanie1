@@ -9,19 +9,22 @@ void swap(int *xp, int *yp){
     *yp = temp;
 }
 
-void bubbleSort(int arr[], int n, bool (*f)(int , int) = nullptr){
+bool rosnaco(int a, int b) {
+	return a > b;
+}
+
+bool malejaco(int a, int b) {
+	return a < b;
+}
+
+void bubbleSort(int arr[], int n, bool (*f)(int , int) = rosnaco){
     int i, j;
     for (i = 0; i < n-1; i++) {
 		for (j = 0; j < n-i-1; j++) {
-			if (f == nullptr) {
-				if (arr[j] > arr[j+1]) {
-					swap(&arr[j], &arr[j+1]);
-				}
-			} else {
+			
 				if (f(arr[j], arr[j+1])) {
-				swap(&arr[j], &arr[j+1]);
+					swap(&arr[j], &arr[j+1]);
 				}			
-			}
 				
 		}			
 	}   		
@@ -34,13 +37,7 @@ void printArray(int arr[], int size){
     cout << endl;
 }
 
-bool rosnaco(int a, int b) {
-	return a > b;
-}
 
-bool malejaco(int a, int b) {
-	return a < b;
-}
 
 int main() {
 	
