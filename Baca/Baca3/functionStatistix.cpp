@@ -43,7 +43,7 @@ unsigned n = sizeof(t)/sizeof(int);
 
 int *r = new int[n];
 
-cout << "gcd=" << gcd(n,t,r) << endl;
+cout << "gcd=" << gcd0(n,t,r) << endl;
 
 for (int i = 0; i < n ;i++) {
 	cout << r[i] << " ";

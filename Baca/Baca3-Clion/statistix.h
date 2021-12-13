@@ -128,73 +128,33 @@ bool median(unsigned int n, const int *t, int (*f)(int), bool (*p)(int), double 
 }
 
 
-unsigned int gcdOfTwoNumber(int a, int b) {
+unsigned int gcdOfTwoNumber(unsigned int a, int b) {
     if (b < 0) b = -b;
-    if (a < 0) a = -a;
 
     if (b == 0)
         return a;
     return gcdOfTwoNumber(b, a % b);
 }
 
-/*unsigned int gcd(unsigned int n, const int *t, int *r = nullptr) {
-
-
-    unsigned int result = uniqueArray[0] > 0 ? uniqueArray[0] : -(uniqueArray[0]);
-
-	for (int i = 1; i < index; i++) {
-			result = gcdOfTwoNumber(result, uniqueArray[i]);
-	}
-
-
-	if (r != nullptr) {
-		for (int i = 0 ; i < n; i++) {
-			r[i] = tempArray[i] / result;
-		}
-	}
-
-	return result;
-}*/
 
 unsigned int gcd(unsigned int n, const int *t, int *r = nullptr) {
 
-
-    if (n == 0) {
+    if (n == 0 or t[n] ==0 ) {
         return 0;
     }
 
-    int *tempArray = new int[n];
+    unsigned int result = t[0];
 
-    for (int i = 0; i < n; i++) {
-        tempArray[i] = t[i];
+    for (int i = 1; i < n; i++) {
+        result = gcdOfTwoNumber(result, t[i]);
     }
-
-    quickSort(tempArray, 0, n - 1);
-
-    if ()
-
-
-
-
-        r[0] = uniqueArray[0];
-        return uniqueArray[0] > 0 ? uniqueArray[0] : -(uniqueArray[0]);
-
-
-    unsigned int result = uniqueArray[0] > 0 ? uniqueArray[0] : -(uniqueArray[0]);
-
-    for (int i = 1; i < index; i++) {
-        if (tempArray[i] != 0)
-            result = gcdOfTwoNumber(result, );
-    }
-
 
     if (r != nullptr) {
-        for (int i = 0; i < index; i++) {
-            r[i] = uniqueArray[i];
+        for (int i = 0 ; i < n; i++) {
+            r[i] = t[i] / (int) result;
         }
     }
 
-    delete[] tempArray;
     return result;
 }
 

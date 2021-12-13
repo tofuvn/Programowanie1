@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 int main(){
-    int t[] = {6,30,12,-81,9,-9,15,6,30,33,21,18};
+    int t[] = {6,30,12,-81,9,-9,15,6,30,33,21,0,0,18};
     unsigned n = sizeof(t)/sizeof(int);
     int *r = new int[n];
     cout << boolalpha;
