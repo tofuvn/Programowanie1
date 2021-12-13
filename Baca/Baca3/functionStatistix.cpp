@@ -2,8 +2,23 @@
 
 #include "statistix.h"
 #include <iostream> 
+#include <chrono>
+
+
 
 using namespace std;
+using namespace std::chrono;
+
+
+int findSum(int arr[], int size, int (*f) (int))
+{
+ int sum = 0;
+for(int i=0; i<size; i++)
+ {
+ sum += f(arr[i]);
+ }
+return sum;
+}
 
 int f(int x) {
 	return x*(x-10); 
@@ -22,16 +37,21 @@ double g(double x) {
 }
 
 int main() {
-	
-	double r=0.0; 
-	int t[] = {6,30,12,-81,9,-9,15,6,30,33,21,18}; 
-	unsigned n = sizeof(t)/sizeof(int);
-	
-	double x[] = {4,3,2,1}; 
-	double p[] = {0.125,0.25,0.125}; 
-	cout << expval(3,x,p,g,r) << endl; 
-	cout << "expval=" << r << endl;
-	
-	
-	return 0;
+int t[] = {6,30,12,-81,9,-9,15,6,30,33,21,18, 0};
+
+unsigned n = sizeof(t)/sizeof(int);
+
+int *r = new int[n];
+
+cout << "gcd=" << gcd(n,t,r) << endl;
+
+for (int i = 0; i < n ;i++) {
+	cout << r[i] << " ";
 }
+
+cout << endl;
+
+
+		
+}
+

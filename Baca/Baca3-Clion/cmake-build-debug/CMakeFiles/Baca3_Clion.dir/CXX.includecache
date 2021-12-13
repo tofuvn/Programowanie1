@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca3-Clion/main.cpp
+statistix.h
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca3-Clion/statistix.h
+iostream
+-
+
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca3-Clion/statistix.h
+
