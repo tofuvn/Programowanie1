@@ -3,4 +3,4 @@
 
 CMakeFiles/Baca3_Clion.dir/main.cpp.o: \
  ../main.cpp \
- ../statistix.h
+ ../statistix2.h

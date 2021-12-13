@@ -4,7 +4,7 @@ bool expval(unsigned int n, const double *x, const double *p, double (*f)(double
 
     double lastPn = 1;
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; ++i) {
         if (p[i] < 0) {
             return false;
         }
@@ -18,7 +18,7 @@ bool expval(unsigned int n, const double *x, const double *p, double (*f)(double
 
     r = 0;
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; ++i) {
         r += f(x[i]) * p[i];
     }
 
@@ -43,7 +43,7 @@ int partition(int *arr, int low, int high) {
     int pivot = arr[high]; // pivot
     int i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
 
-    for (int j = low; j <= high - 1; j++) {
+    for (int j = low; j <= high - 1; ++j) {
         // If current element is smaller than the pivot
         if (arr[j] < pivot) {
             i++; // increment index of smaller element
@@ -106,6 +106,7 @@ bool median(unsigned int n, const int *t, int (*f)(int), bool (*p)(int), double 
         i++;
 
         index = index + 1;
+
     }
 
     if (index == 0) {
@@ -139,18 +140,23 @@ unsigned int gcdOfTwoNumber(unsigned int a, int b) {
 
 unsigned int gcd(unsigned int n, const int *t, int *r = nullptr) {
 
-    if (n == 0 or t[n] ==0 ) {
+    if (n == 0) {
         return 0;
     }
 
-    unsigned int result = t[0];
+    unsigned int result = 0;
 
-    for (int i = 1; i < n; i++) {
+    for (int i = 0; i < n; ++i) {
+        if (t[i] == 0) continue;
         result = gcdOfTwoNumber(result, t[i]);
     }
-    
+
+    if (result == 0) {
+        return 0;
+    }
+
     if (r != nullptr) {
-        for (int i = 0 ; i < n; i++) {
+        for (int i = 0; i < n; ++i) {
             r[i] = t[i] / (int) result;
         }
     }
@@ -165,7 +171,7 @@ unsigned int count(unsigned int n, const int *t, bool (*p)(int, int) = nullptr) 
         return 0;
     }
     int *tempArray = new int[n];
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; ++i) {
         tempArray[i] = t[i];
     }
 
@@ -193,8 +199,8 @@ unsigned int count(unsigned int n, const int *t, bool (*p)(int, int) = nullptr) 
 
 
     unsigned int total = 0;
-    for (int i = 0; i < index; i++) {
-        for (int j = 0; j < index; j++) {
+    for (int i = 0; i < index; ++i) {
+        for (int j = 0; j < index; ++j) {
 
             if (p(uniqueArray[i], uniqueArray[j])) {
                 total++;
