@@ -148,7 +148,7 @@ unsigned int gcd(unsigned int n, const int *t, int *r = nullptr) {
     for (int i = 1; i < n; i++) {
         result = gcdOfTwoNumber(result, t[i]);
     }
-
+    
     if (r != nullptr) {
         for (int i = 0 ; i < n; i++) {
             r[i] = t[i] / (int) result;
