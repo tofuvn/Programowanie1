@@ -171,14 +171,6 @@ unsigned int gcd(unsigned int n, const int *t, int *r = nullptr) {
 
     quickSort(tempArray, 0, n - 1);
 
-    if ()
-
-
-
-
-        r[0] = uniqueArray[0];
-        return uniqueArray[0] > 0 ? uniqueArray[0] : -(uniqueArray[0]);
-
 
     unsigned int result = uniqueArray[0] > 0 ? uniqueArray[0] : -(uniqueArray[0]);
 
