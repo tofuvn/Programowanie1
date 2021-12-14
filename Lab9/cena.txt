@@ -1,0 +1,4 @@
+kanapka 2.50
+szarlotka 1.50
+woda_mineralna 1.50
+Total price: 5.500000
