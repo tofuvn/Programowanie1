@@ -1,4 +1,5 @@
-kanapka 2.50
-szarlotka 1.50
-woda_mineralna 1.50
-Total price: 5.500000
+kdasd dasdsa:2.50
+szarlotka: 1.50
+woda_mineralna: 1.50 
+the vna: 12.000000
+ho van: 12.00
