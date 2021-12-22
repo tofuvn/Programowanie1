@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca4/main.cpp
+iostream
+-
+cstdarg
+-
+source.cpp
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca4/source.cpp
+
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca4/source.cpp
+
