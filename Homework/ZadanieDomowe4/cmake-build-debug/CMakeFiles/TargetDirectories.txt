@@ -1,0 +1,3 @@
+/Users/minminnn/Desktop/University Staff/Programowanie/Homework/ZadanieDomowe4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/minminnn/Desktop/University Staff/Programowanie/Homework/ZadanieDomowe4/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/minminnn/Desktop/University Staff/Programowanie/Homework/ZadanieDomowe4/cmake-build-debug/CMakeFiles/ZadanieDomowe4.dir
