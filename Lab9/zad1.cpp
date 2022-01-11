@@ -13,17 +13,19 @@ int main() {
        exit(1);
 	};
 	
-	char name[30];
 	float price = 0;
 	float total = 0;
+	char name[30];
 	
-	for (int i = 0; i < 3; i++) {
-		fscanf(file, "%s%f", name, &price);
-		printf("Price %s %f \n",name, price);
+	int c;
+	
+	while ((c = fgetc(file)) != EOF){
+		fscanf(file, "%s%f ", name,  &price);
+		//printf("Price %f \n", price);
 		total += price;
 	}
 
-	fprintf(file, "\nTotal price: %f\n", total);
+	printf( "Total price: %f\n", total);
 	
 	fclose(file);
 }
