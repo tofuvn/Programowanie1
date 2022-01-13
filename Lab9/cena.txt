@@ -1,5 +1,11 @@
+<<<<<<< HEAD
+kanapka 2.50
+szarlotka 1.50
+woda_mineralna 1.50
+=======
 kdasd dasdsa:2.50
 szarlotka: 1.50
 woda_mineralna: 1.50 
 the vna: 12.000000
 ho van: 12.00
+>>>>>>> c618986c4ada96988ee11a7d32c18e1b40122fd7
