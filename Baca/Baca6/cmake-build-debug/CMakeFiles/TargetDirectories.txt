@@ -1,0 +1,3 @@
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca6/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca6/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca6/cmake-build-debug/CMakeFiles/Baca6.dir

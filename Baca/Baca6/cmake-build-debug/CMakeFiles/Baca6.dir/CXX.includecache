@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca6/Uczestnik.h
+
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca6/main.cpp
+iostream
+-
+source.cpp
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca6/source.cpp
+
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca6/source.cpp
+Uczestnik.h
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca6/Uczestnik.h
+
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca6/source_THE.cpp
+Uczestnik.h
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca6/Uczestnik.h
+iostream
+-
+
