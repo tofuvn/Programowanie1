@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++ -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/Baca12.dir/main.cpp.o CMakeFiles/Baca12.dir/Z3.cpp.o CMakeFiles/Baca12.dir/Polynomial.cpp.o -o Baca12 

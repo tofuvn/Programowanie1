@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdarg>
-#include "source.cpp"
+#include "source_TheHo.cpp"
 
 using namespace std;
 
@@ -13,11 +13,8 @@ bool zostawMalaLitere(char c) {
 }
 
 int main() {
-    char s1[] = "TO JEST BARDZO TAJNY TEKST!@#$%";
-    char s2[] = "to jest bardzo tajny tekst!@#$%";
-    char klucz[] = "TAJNE!!";
-    szyfruj(s1,klucz);
-    szyfruj(s2,klucz);
-    printf("%s\n%s",s1,s2);
+    char s[] = "oo";
+    filtruj(s,"o");
+    printf("%s\n",s);
     return 0;
 }

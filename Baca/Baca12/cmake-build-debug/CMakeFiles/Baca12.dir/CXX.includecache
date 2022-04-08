@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca12/Polynomial.cpp
+Polynomial.h
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca12/Polynomial.h
+iostream
+-
+
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca12/Polynomial.h
+Z3.h
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca12/Z3.h
+string
+-
+
+/Users/minminnn/Desktop/University Staff/Programowanie/Baca/Baca12/Z3.h
+iostream
+-
+

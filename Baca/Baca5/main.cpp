@@ -124,7 +124,6 @@ int getNumberOfVariables(const string &basicString, bool flag[26]) {
     return count;
 }
 
-// TODO
 void isTautology(const string &prefix, int n, bool flag[], int arr[], int i, int k, bool &check) {
     if (!check) return;
 
@@ -140,7 +139,6 @@ void isTautology(const string &prefix, int n, bool flag[], int arr[], int i, int
     isTautology(prefix, n, flag, arr, i + 1, k + 1, check);
 }
 
-// TODO
 void countTrueStatements(const string &prefix, int n, bool flag[], int arr[], int i, int k, int &count) {
     if (i == n) {
         if (evaluateValue(prefix, arr)) { count++; }
@@ -185,7 +183,7 @@ void reverse(string &str) {
     }
 }
 
-// DONE
+
 string convertInfixToPrefix(string infix, Stack<char> stack) {
     string prefix;
 
@@ -352,7 +350,6 @@ void evaluateByMode(char mode) {
     bool flag[26]{false};
     int arr[26]{0};
 
-
     int numOfVariables = getNumberOfVariables(prefix, flag);
 
     if (mode == '1') {
@@ -364,11 +361,8 @@ void evaluateByMode(char mode) {
     }
 
     bool check = true;
-    if (mode == 'T') {
-        isTautology(prefix, numOfVariables, flag, arr, 0, 0, check);
-    } else {
-        countTrueStatements(prefix, numOfVariables, flag, arr, 0, 0, count);
-    }
+
+    isTautology(prefix, numOfVariables, flag, arr, 0, 0, check);
 
     switch (mode) {
         case 'T':
@@ -379,14 +373,24 @@ void evaluateByMode(char mode) {
             }
             break;
         case 'F':
-            cout << pow(2, numOfVariables) - count << endl;
+            if (check) {
+                cout << 0 << endl;
+            } else {
+                countTrueStatements(prefix, numOfVariables, flag, arr, 0, 0, count);
+                cout << pow(2, numOfVariables) - count << endl;
+            }
             break;
         case 'P':
-            cout << count << endl;
+            if (check) {
+                cout << pow(2, numOfVariables) << endl;
+            } else {
+                countTrueStatements(prefix, numOfVariables, flag, arr, 0, 0, count);
+                cout << count << endl;
+            }
             break;
         case '0':
         case '1':
-            if (count == pow(2, numOfVariables)) {
+            if (check) {
                 cout << "TAK" << endl;
             } else {
                 cout << "NIE" << endl;
